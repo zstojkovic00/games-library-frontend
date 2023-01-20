@@ -17,8 +17,6 @@ function App() {
                <Route path="/" element={<Home/>} />
                <Route path="/login" element={<Login/>} />
                <Route path="/join" element={<Join/>} />
-               {/*<Route path='/game/:name' element={GameDetail} />*/}
-
            </Routes>
         </div>
     </div>

@@ -1,7 +1,6 @@
 import React,{ useState, useEffect} from 'react';
 import GameList from "../components/GameList";
 import './style/home_style.css'
-import axios from 'axios';
 
 const Home = () => {
 

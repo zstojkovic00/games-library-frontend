@@ -1,0 +1,49 @@
+.games {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #ccd6f6;
+}
+
+
+
+.gameList {
+    width: 70vw;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    place-items: center;
+}
+
+
+.gameItem {
+    border-radius: 15px;
+    width: 300px;
+    height: 300px;
+    background-color:#112240;
+    margin: 40px;
+    display: inline-block;
+
+    min-width: 10px;
+
+    box-shadow: 0px 5px 15px rgba(0,0,0 ,0.5);
+    text-align: center;
+}
+.gameItem:hover {
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 1);
+    color:#5ff1d0;
+    transition: 0.3s ease-in;
+    cursor: pointer;
+}
+
+
+.gameItem .bgImage {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 100%;
+    height: 200px;
+
+}

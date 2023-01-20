@@ -1,18 +1,27 @@
 import React from "react";
-
+import GameItem from "./GameItem";
+import './Game.css'
 
 const GameList = (props) => {
+
     return (
-        <>
+        <div className='games'>
+        <div className='gameList'>
 
             {
-                props.games.map((game,index)=>
-                <div>
-                    <img src={game.background_image} alt='game' />
-                </div>
+
+                props.games.map((game,index)=>{
+                return(
+                    <GameItem id={index} name={game.name} background_image={game.background_image}/>
+                )}
+
+
+
                 )
             }
-        </>
+
+            </div>
+        </div>
     )
 }
 
