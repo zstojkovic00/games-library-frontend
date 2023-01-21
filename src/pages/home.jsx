@@ -2,6 +2,7 @@ import React,{ useState, useEffect} from 'react';
 import GameList from "../components/GameList";
 import './style/home_style.css'
 
+
 const Home = () => {
 
 
@@ -15,8 +16,9 @@ const Home = () => {
         const res = await fetch(url);
         const resJson = await res.json();
 
-        console.log(resJson);
         setGames(resJson.results);
+
+
 
     }
 
@@ -28,8 +30,11 @@ const Home = () => {
 
     return (
         <div className='container-games'>
+
             <div className='row'>
-            <GameList games={games}/>
+                <h1 className='RowText'> New and trending</h1>
+
+                <GameList games={games}/>
             </div>
         </div>
     )

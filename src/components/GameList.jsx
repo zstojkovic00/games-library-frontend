@@ -8,6 +8,7 @@ const GameList = (props) => {
         <div className='games'>
         <div className='gameList'>
 
+
             {
 
                 props.games.map((game,index)=>{
