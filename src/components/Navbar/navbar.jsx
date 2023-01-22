@@ -15,8 +15,8 @@ const Navbar = () => {
                  <Link className="nav__el--login-top" to="/login"> Login</Link>
              </li>
 
-             <li className="nav__el--login">
-                 <Link  className="nav__el--login-top" to="/join"> Join</Link>
+             <li className="nav__el--join">
+                 <Link  className="nav__el--join-top" to="/join"> Join</Link>
              </li >
 
 

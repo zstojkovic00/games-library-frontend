@@ -2,6 +2,7 @@ import React,{ useState, useEffect} from 'react';
 import GameList from "../components/GameList";
 import './style/home_style.css'
 import axios from 'axios';
+import '../components/Navbar/navbar.css'
 
 const Home = () => {
 
@@ -37,12 +38,11 @@ const Home = () => {
                 <form onSubmit={searchGames} className="search__container">
                     <input  onChange={(e)=> setSearchKey(e.target.value)} className="search__input" type="text" placeholder="Search games" />
                     <div className="search__button">
-                        <button className="search__button__top" > Search</button>
+                        <button className="search__button-top" > Search</button>
                     </div>
                 </form>
             <div className='row'>
                 <h1 className='RowText'> New and trending</h1>
-
                 <GameList games={games}/>
             </div>
         </div>
