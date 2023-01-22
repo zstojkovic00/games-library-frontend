@@ -1,42 +1,52 @@
 import React,{ useState, useEffect} from 'react';
 import GameList from "../components/GameList";
 import './style/home_style.css'
-
+import axios from 'axios';
 
 const Home = () => {
 
+    const [games, setGames] = useState([]);
+    const [searchKey, setSearchKey] = useState('');
 
-    const [games, setGames] = useState([]
-    );
+    const getGames = async(searchKey) => {
+        const type = searchKey ? `&search=${searchKey}` : ""
+        const {data: {results}} = await axios.get("https://api.rawg.io/api/games?key="+process.env.REACT_APP_API_KEY+`${type}`,{
+        })
 
-    const fetchGames = async () => {
-        const url = "https://api.rawg.io/api/games?key=bac66ee8265d4894b6534d314dcc726a";
+        setGames(results);
 
-
-        const res = await fetch(url);
-        const resJson = await res.json();
-
-        setGames(resJson.results);
-
-
-
-    }
+}
 
     useEffect(()=> {
-        fetchGames();
+        getGames();
 
     }, [])
 
+    const searchGames = (e) => {
+        e.preventDefault();
+        getGames(searchKey);
+    }
+
+
 
     return (
-        <div className='container-games'>
 
+
+            <div className='container-games'>
+
+                <form onSubmit={searchGames} className="search__container">
+                    <input  onChange={(e)=> setSearchKey(e.target.value)} className="search__input" type="text" placeholder="Search games" />
+                    <div className="search__button">
+                        <button className="search__button__top" > Search</button>
+                    </div>
+                </form>
             <div className='row'>
                 <h1 className='RowText'> New and trending</h1>
 
                 <GameList games={games}/>
             </div>
         </div>
+
     )
 
 

@@ -2,7 +2,11 @@ import React from "react";
 import GameItem from "./GameItem";
 import './Game.css'
 
+
+
 const GameList = (props) => {
+
+
 
     return (
         <div className='games'>
@@ -13,7 +17,7 @@ const GameList = (props) => {
 
                 props.games.map((game,index)=>{
                 return(
-                    <GameItem id={index} name={game.name} background_image={game.background_image}/>
+                    <GameItem key={game.id} id={index} name={game.name} background_image={game.background_image}/>
                 )}
 
 
