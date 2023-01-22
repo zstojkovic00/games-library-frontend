@@ -1,5 +1,6 @@
 import React,{ useState, useEffect} from 'react';
 import GameList from "../components/GameList";
+import Pagination from '../components/Pagination'
 import './style/home_style.css'
 import axios from 'axios';
 import '../components/Navbar/navbar.css'
@@ -8,20 +9,29 @@ const Home = () => {
 
     const [games, setGames] = useState([]);
     const [searchKey, setSearchKey] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [gamesPerPage, setGamesPerPage] = useState(12);
 
     const getGames = async(searchKey) => {
         const type = searchKey ? `&search=${searchKey}` : ""
         const {data: {results}} = await axios.get("https://api.rawg.io/api/games?key="+process.env.REACT_APP_API_KEY+`${type}`,{
         })
-
         setGames(results);
-
 }
-
     useEffect(()=> {
         getGames();
 
-    }, [])
+    }, []);
+
+    // Get current games
+    const indexOfLastGame = currentPage * gamesPerPage;
+    const indexOfFirsgGame = indexOfLastGame - gamesPerPage;
+    const currentGames = games.slice(indexOfFirsgGame, indexOfLastGame);
+
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
+
+
 
     const searchGames = (e) => {
         e.preventDefault();
@@ -43,7 +53,8 @@ const Home = () => {
                 </form>
             <div className='row'>
                 <h1 className='RowText'> New and trending</h1>
-                <GameList games={games}/>
+                <GameList games={currentGames}/>
+                <Pagination gamesPerPage={gamesPerPage} totalGames={games.length}  paginate={paginate}/>
             </div>
         </div>
 
