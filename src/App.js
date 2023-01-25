@@ -4,6 +4,7 @@ import Home from "./pages/home"
 import Login from "./pages/login"
 import Join from "./pages/join"
 import { Route, Routes} from "react-router-dom";
+import GameDisplay from "./pages/GameDisplay";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <div className="container">
            <Routes >
                <Route path="/" element={<Home/>} />
+               <Route path="game/:id" element={<GameDisplay />} />
                <Route path="/login" element={<Login/>} />
                <Route path="/join" element={<Join/>} />
            </Routes>

@@ -13,7 +13,7 @@ const Home = () => {
     const [gamesPerPage, setGamesPerPage] = useState(12);
 
     const getGames = async(searchKey) => {
-        const type = searchKey ? `&search=${searchKey}` : ""
+        const type = searchKey ? `&page=1&page_size=40&search=${searchKey}` : "&page=1&page_size=40"
         const {data: {results}} = await axios.get("https://api.rawg.io/api/games?key="+process.env.REACT_APP_API_KEY+`${type}`,{
         })
         setGames(results);
@@ -27,8 +27,6 @@ const Home = () => {
     const indexOfLastGame = currentPage * gamesPerPage;
     const indexOfFirsgGame = indexOfLastGame - gamesPerPage;
     const currentGames = games.slice(indexOfFirsgGame, indexOfLastGame);
-
-    const paginate = pageNumber => setCurrentPage(pageNumber);
 
 
 
@@ -52,9 +50,9 @@ const Home = () => {
                     </div>
                 </form>
             <div className='row'>
-                <h1 className='RowText'> New and trending</h1>
+                <h1 className='RowText'> Best games of all time</h1>
                 <GameList games={currentGames}/>
-                <Pagination gamesPerPage={gamesPerPage} totalGames={games.length}  paginate={paginate}/>
+                <Pagination gamesPerPage={gamesPerPage} totalGames={games.length}  setCurrentPage={setCurrentPage} currentPage={currentPage}/>
             </div>
         </div>
 

@@ -73,7 +73,7 @@ body {
     transform: translateY(-0.33em);
 }
 
-.nav__el--login:active .nav__el--login-top, .nav__el--join:active, .nav__el--join-top:active, .search__button:active,.search__button-top:active {
+.nav__el--login:active .nav__el--login-top, .nav__el--join:active, .nav__el--join-top:active, .search__button:active,.search__button-top:active{
     /* Push the button downwards when pressed */
     transform: translateY(0);
 }

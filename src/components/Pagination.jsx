@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Pagination = ({gamesPerPage, totalGames, paginate}) => {
+const Pagination = ({gamesPerPage, totalGames, setCurrentPage,currentPage}) => {
     const pageNumbers = [];
 
 
@@ -9,17 +9,19 @@ const Pagination = ({gamesPerPage, totalGames, paginate}) => {
     }
 
 
+
     return (
-        <div>
-            <ul className='pagination'>
-                {pageNumbers.map(number => (
-                    <li key={number} className='page-item'>
-                        <button onClick={() => paginate(number)} className='page-link'>
-                            {number}
-                        </button>
-                    </li>
-                ))}
-            </ul>
+        <div className='pagination'>
+            {pageNumbers.map((page, index) => {
+                return (
+                    <button
+                        key={index}
+                        onClick={() => setCurrentPage(page)}
+                        className={page == currentPage ? "active" : ""}>
+                        {page}
+                    </button>
+                );
+            })}
         </div>
     );
 };
