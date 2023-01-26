@@ -17,7 +17,7 @@ const GameList = (props) => {
 
                 props.games.map((game,index)=>{
                 return(
-                    <GameItem key={game.id} id={index} name={game.name} background_image={game.background_image}/>
+                    <GameItem key={game.id} game_id={game.id} id={index} name={game.name} background_image={game.background_image}/>
                 )}
 
 

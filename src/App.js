@@ -16,7 +16,7 @@ function App() {
         <div className="container">
            <Routes >
                <Route path="/" element={<Home/>} />
-               <Route path="game/:id" element={<GameDisplay />} />
+               <Route path="games/:id" element={<GameDisplay />} />
                <Route path="/login" element={<Login/>} />
                <Route path="/join" element={<Join/>} />
            </Routes>

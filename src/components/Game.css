@@ -31,10 +31,13 @@
 
     box-shadow: 0px 5px 15px rgba(0,0,0 ,0.5);
     text-align: center;
+    transition: all 0.3s;
 }
+
 .gameItem:hover {
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 1);
-    transition: 0.3s ease-in;
+    transform: scale(1.1);
+    transition: all 0.3s;
     cursor: pointer;
 }
 
@@ -48,6 +51,16 @@
 
 
 }
+a:link { text-decoration: none; }
+
+
+a:visited { text-decoration: none; }
+
+
+a:hover { text-decoration: none; }
+
+
+a:active { text-decoration: none; }
 
 @media only screen and (max-width: 1300px) {
     .gameList {

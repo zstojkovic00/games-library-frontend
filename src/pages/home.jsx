@@ -16,6 +16,7 @@ const Home = () => {
         const type = searchKey ? `&page=1&page_size=40&search=${searchKey}` : "&page=1&page_size=40"
         const {data: {results}} = await axios.get("https://api.rawg.io/api/games?key="+process.env.REACT_APP_API_KEY+`${type}`,{
         })
+
         setGames(results);
 }
     useEffect(()=> {
