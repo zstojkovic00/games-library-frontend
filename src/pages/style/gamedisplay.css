@@ -1,0 +1,17 @@
+.rating__wrapper {
+    color: white;
+    font-size: 30px;
+
+}
+
+.rating__wrapper img {
+    width: 2rem;
+    height: 2rem;
+    display: inline;
+}
+
+
+
+.gameDisplay__wrapper{
+
+}

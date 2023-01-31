@@ -14,3 +14,4 @@ function GameItem({background_image, name,game_id}) {
 }
 
 export default GameItem;
+
