@@ -1,24 +1,48 @@
 import React from 'react';
 import {useState} from 'react';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import './style/auth.css'
-const Join = () => {
+import {userJoin} from "../api/authenticationService";
 
 
-        const [email, setEmail] = useState("");
-        const [password, setPassword] = useState("");
-        const [firstname, setFirstname] = useState("");
-        const [lastname, setLastname] = useState("");
+const Join = ({...props}) => {
+    const navigate = useNavigate();
+    const [values, setValues] = useState({
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: ''
+    });
+
+
 
 
     const handleSubmit = (e) => {
             e.preventDefault();
-            console.log(email);
-            console.log(password);
-            console.log(firstname);
-            console.log(lastname);
+            console.log(values);
+            userJoin(values).then((res)=>{
+
+                console.log("response",res);
+                if(res.status===200){
+                    navigate("/");
+                }
+
+
+            }).catch((err)=>{
+
+                console.log(err);
+
+            });
 
         }
+
+    const handleChange = (e) => {
+        e.persist();
+        setValues(values => ({
+            ...values,
+            [e.target.name]: e.target.value
+        }));
+    };
 
         return (
             <div className="auth_wrapper" >
@@ -27,13 +51,13 @@ const Join = () => {
 
                 <form className="join-form" onSubmit={handleSubmit}>
                     <label htmlFor="firstname">First name</label>
-                    <input className="input_form" value={firstname} onChange={(e)=> setFirstname(e.target.value)} type="text"  id="firstname" name="firstname" />
+                    <input className="input_form" value={values.firstname}  onChange={handleChange} type="text"  id="firstname" name="firstname" required/>
                     <label htmlFor="lastname">Last name</label>
-                    <input className="input_form" value={lastname} onChange={(e)=> setLastname(e.target.value)} type="text"  id="lastname" name="lastname" />
+                    <input className="input_form" value={values.lastname} onChange={handleChange} type="text"  id="lastname" name="lastname" required/>
                     <label htmlFor="email">email</label>
-                    <input className="input_form" value={email} onChange={(e)=> setEmail(e.target.value)} type="email"  id="email" name="email" />
+                    <input className="input_form" value={values.email} onChange={handleChange} type="email"  id="email" name="email" required/>
                     <label htmlFor="password">password</label>
-                    <input className="input_form" value={password} onChange={(e)=> setPassword(e.target.value)} type="password"  id="password" name="password"/>
+                    <input className="input_form" value={values.password} onChange={handleChange} type="password"  id="password" name="password" required/>
                     <button className="joinButton" type="submit">Join</button>
                 </form>
                 <Link className="linkButton" to="/login">Already have an account? Login here!</Link>

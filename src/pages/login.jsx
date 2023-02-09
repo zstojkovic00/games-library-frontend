@@ -1,29 +1,64 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import './style/auth.css'
+// import {userLogin} from '../api/authenticationService';
 
 
 
 
-const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+const Login = ({...props}) => {
+    const [values, setValues] = useState({
+        email: '',
+        password: ''
+    });
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(email);
+    // const [jwt, setJwt] = useState("");
+    //
+    //
+    //
+    // const handleSubmit=(evt)=>{
+    //     evt.preventDefault();
+    //
+    //     userLogin(values).then((response)=>{
+    //
+    //         console.log("response",response);
+    //         if(response.status===200){
+    //             props.setUser(response.data);
+    //             props.history.push('/');
+    //         }
+    //
+    //
+    //     }).catch((err)=>{
+    //
+    //         console.log(err);
+    //
+    //     });
+    //
+    //
+    // }
 
-    }
+
+
+
+
+
+    const handleChange = (e) => {
+        e.persist();
+        setValues(values => ({
+            ...values,
+            [e.target.name]: e.target.value
+        }));
+    };
 
     return (
         <div className="auth_wrapper" >
         <div className="auth-form">
             <h2> Login</h2>
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="login-form">
             <label htmlFor="email">email</label>
-            <input className="input_form" value={email} onChange={(e)=> setEmail(e.target.value)} type="email"  id="email" name="email" />
+            <input className="input_form" value={values.email} onChange={handleChange} type="email"  id="email" name="email" />
             <label htmlFor="password">password</label>
-            <input className="input_form" value={password} onChange={(e)=> setPassword(e.target.value)} type="password"  id="password" name="password"/>
+            <input className="input_form" value={values.password} onChange={handleChange} type="password"  id="password" name="password"/>
             <button className="loginButton" type="submit">Log in</button>
         </form>
             <Link className="linkButton" to="/join">Don't have an account?  Join here!</Link>
