@@ -2,9 +2,14 @@ import React from 'react';
 import "./navbar.css";
 import Logo from '../../assets/images/logo.png'
 import {Link} from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 const Navbar = () => {
 
+    const {pathname} = useLocation();
+
+    if(pathname === "/login" || pathname === "/join") {
+        return null;
+    }
 
     return (
      <nav className="nav">

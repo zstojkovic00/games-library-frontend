@@ -6,9 +6,12 @@ import starEmpty from '../assets/images/star-empty.png';
 import { motion } from "framer-motion";
 import './style/gamedisplay.css'
 import { smallImage } from "../util";
-
-
-
+import apple from '../assets/images/apple.svg'
+import gamepad from '../assets/images/gamepad.svg'
+import nintendo from'../assets/images/nintendo.svg'
+import playstation from'../assets/images/playstation.svg'
+import steam from '../assets/images/steam.svg'
+import xbox from '../assets/images/xbox.svg'
 
 
 
@@ -35,22 +38,22 @@ const GameDisplay = () => {
 
     const getPlatform = (platform) => {
 
-        // switch (platform) {
-        //     case "PlayStation 4":
-        //         return playstation;
-        //     case "PlayStation 5":
-        //         return playstation;
-        //     case "Xbox One":
-        //         return xbox;
-        //     case "PC":
-        //         return steam;
-        //     case "Nintendo Switch":
-        //         return nintendo;
-        //     case "iOS":
-        //         return apple;
-        //     default:
-        //         return gamepad;
-        // }
+        switch (platform) {
+            case "PlayStation 4":
+                return playstation;
+            case "PlayStation 5":
+                return playstation;
+            case "Xbox One":
+                return xbox;
+            case "PC":
+                return steam;
+            case "Nintendo Switch":
+                return nintendo;
+            case "iOS":
+                return apple;
+            default:
+                return gamepad;
+        }
 
 
 
@@ -78,16 +81,16 @@ const GameDisplay = () => {
                 <h1>{game.name}</h1>
                 <p>Rating: {game.rating}</p>
                 {getStars()}
-            {/*</div>*/}
-            {/*<div className="platforms__wrapper">*/}
-            {/*<h1>Platforms</h1>*/}
-            {/*    {game.platforms?.map((data) => (*/}
-            {/*        <img*/}
-            {/*            alt={data.platform.name}*/}
-            {/*            key={data.platform.id}*/}
-            {/*            src={ getPlatform(data.platform.name)}*/}
-            {/*        ></img>*/}
-            {/*    ))}*/}
+            </div>
+            <div className="platforms__wrapper">
+            <h1>Platforms</h1>
+                {game.platforms?.map((data) => (
+                    <img
+                        alt={data.platform.name}
+                        key={data.platform.id}
+                        src={ getPlatform(data.platform.name)}
+                    ></img>
+                ))}
             </div>
 
                 <div className='image__wrapper' >
