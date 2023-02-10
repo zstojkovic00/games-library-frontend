@@ -1,13 +1,18 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
+import { authenticate, authFailure, authSuccess } from '../redux/authActions';
+import { connect } from 'react-redux';
 import './style/auth.css'
 import {userLogin} from "../api/authenticationService";
 
 
 
 
-const Login = ({...props}) => {
+const Login = ({loading,error,...props}) => {
+
     const navigate = useNavigate();
+
+
     const [values, setValues] = useState({
         email: '',
         password: ''
@@ -15,11 +20,13 @@ const Login = ({...props}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(values);
+        props.authenticate();
+
         userLogin(values).then((res)=>{
 
             console.log("response",res);
             if(res.status===200){
+                props.setUser(res.data);
                 navigate("/");
             }
 
@@ -59,4 +66,22 @@ const Login = ({...props}) => {
     );
 };
 
-export default Login;
+
+const mapStateToProps=({auth})=>{
+    console.log("state ",auth)
+    return {
+        loading:auth.loading,
+        error:auth.error
+    }}
+
+
+const mapDispatchToProps=(dispatch)=>{
+
+    return {
+        authenticate :()=> dispatch(authenticate()),
+        setUser:(data)=> dispatch(authSuccess(data)),
+    }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Login);
