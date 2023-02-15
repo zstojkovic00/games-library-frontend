@@ -16,6 +16,10 @@ const Navbar = () => {
          <Link to="/" className="site-logo"> <img src={Logo} alt="Logo"/></Link>
          {/*<Search/>*/}
          <ul>
+             <li className="nav__el--join">
+                 <Link  className="nav__el--join-top" to="/my-games"> My games</Link>
+             </li >
+
              <li className="nav__el--login">
                  <Link className="nav__el--login-top" to="/login"> Login</Link>
              </li>

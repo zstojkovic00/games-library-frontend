@@ -27,10 +27,23 @@ export const userLogin=(authRequest)=>{
 export const fetchUserData=(authRequest)=>{
     return axios({
         method:'GET',
-        url:"http://localhost:8080/api/v1/auth/currentUserInfo",
+        url:"http://localhost:8080/api/v1/auth/getCurrentUser",
         headers:{
             'Authorization':'Bearer '+getToken()
         }
     })
 }
 
+
+
+
+
+export const addGameToCurrentUser=(id)=>{
+    return axios({
+        method:'PUT',
+        url:`http://localhost:8080/api/v1/auth/getGame/${id}/user`,
+        headers:{
+            'Authorization':'Bearer '+getToken()
+        }
+    })
+}

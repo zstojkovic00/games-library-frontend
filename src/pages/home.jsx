@@ -18,7 +18,6 @@ const Home = (props) => {
     React.useEffect(()=>{
         fetchUserData().then((response)=>{
             setData(response.data);
-            console.log(response.data);
         }).catch((e)=>{
             localStorage.clear();
             props.history.push('/');

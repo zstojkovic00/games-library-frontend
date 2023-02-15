@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import starFull from '../assets/images/star-full.png';
 import starEmpty from '../assets/images/star-empty.png';
 import { motion } from "framer-motion";
@@ -12,16 +12,24 @@ import nintendo from'../assets/images/nintendo.svg'
 import playstation from'../assets/images/playstation.svg'
 import steam from '../assets/images/steam.svg'
 import xbox from '../assets/images/xbox.svg'
+import {addGameToCurrentUser, fetchUserData, userLogin} from "../api/authenticationService";
+import {authenticate, authSuccess} from "../redux/authActions";
+import {connect} from "react-redux";
 
 
 
 
 
-const GameDisplay = () => {
+const GameDisplay = ({...props}) => {
+
+    const navigate = useNavigate();
 
     const [game, setGame] = useState([]);
 
     const {id} = useParams();
+
+    const [data,setData]=useState({});
+
 
     const getStars = () => {
         const stars = [];
@@ -64,14 +72,37 @@ const GameDisplay = () => {
         const {data: result} = await axios.get(`https://api.rawg.io/api/games/${id}?key=`+process.env.REACT_APP_API_KEY,{
         })
         setGame(result);
-        console.log(result);
-
     }
 
     useEffect(()=> {
         getGame();
 
     }, []);
+
+
+
+
+
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        addGameToCurrentUser(id).then((res)=>{
+
+            console.log("response",res);
+            if(res.status===200){
+                navigate("/my-games");
+            }
+
+
+        }).catch((err)=>{
+
+            console.log(err);
+
+        });
+
+    }
 
 
     return (
@@ -99,6 +130,10 @@ const GameDisplay = () => {
                         alt={game.background_image}
                     />
                 </div>
+
+                <form onSubmit={handleSubmit}>
+                    <button type="submit">Add game</button>
+                </form>
             </div>
         </div>
 
@@ -106,5 +141,10 @@ const GameDisplay = () => {
     );
 };
 
-export default GameDisplay;
+
+
+
+
+
+export default GameDisplay
 
