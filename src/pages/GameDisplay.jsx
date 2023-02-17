@@ -5,16 +5,15 @@ import starFull from '../assets/images/star-full.png';
 import starEmpty from '../assets/images/star-empty.png';
 import { motion } from "framer-motion";
 import './style/gamedisplay.css'
-import { smallImage } from "../util";
+import { smallImage } from "../util/util";
 import apple from '../assets/images/apple.svg'
 import gamepad from '../assets/images/gamepad.svg'
 import nintendo from'../assets/images/nintendo.svg'
 import playstation from'../assets/images/playstation.svg'
 import steam from '../assets/images/steam.svg'
 import xbox from '../assets/images/xbox.svg'
-import {addGameToCurrentUser, fetchUserData, userLogin} from "../api/authenticationService";
-import {authenticate, authSuccess} from "../redux/authActions";
-import {connect} from "react-redux";
+import {addGameToCurrentUser} from "../api/authenticationService";
+
 
 
 
@@ -28,7 +27,6 @@ const GameDisplay = ({...props}) => {
 
     const {id} = useParams();
 
-    const [data,setData]=useState({});
 
 
     const getStars = () => {

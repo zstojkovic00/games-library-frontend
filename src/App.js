@@ -7,7 +7,6 @@ import { Route, Routes} from "react-router-dom";
 import GameDisplay from "./pages/GameDisplay";
 import MyGames from "./pages/MyGames"
 
-
 function App() {
 
 
@@ -23,6 +22,7 @@ function App() {
                <Route path="/login" element={<Login/>} />
                <Route path="/join" element={<Join/>} />
                <Route path="/my-games" element={<MyGames/>} />
+
            </Routes>
         </div>
     </div>

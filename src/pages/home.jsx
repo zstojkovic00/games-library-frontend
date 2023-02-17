@@ -58,11 +58,12 @@ const Home = (props) => {
 
 
 
+
     return (
 
 
             <div className='container-games'>
-                <h4>Hello {data && `${data.email}`}</h4>
+                <br/>
                 <form onSubmit={searchGames} className="search__container">
                     <input  onChange={(e)=> setSearchKey(e.target.value)} className="search__input" type="text" placeholder="Search games" />
                     <div className="search__button">
@@ -74,7 +75,11 @@ const Home = (props) => {
                 <GameList games={currentGames}/>
                 <Pagination gamesPerPage={gamesPerPage} totalGames={games.length}  setCurrentPage={setCurrentPage} currentPage={currentPage}/>
             </div>
+
+
         </div>
+
+
 
     )
 

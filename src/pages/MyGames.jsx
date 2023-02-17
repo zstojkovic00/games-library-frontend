@@ -25,8 +25,11 @@ const MyGames = ({...props}) => {
 
 
 
+
+
     return (
         <>
+
             <h1 className="myGameH1">Predjene igrice</h1>
             {data.games?.map((game) => (
              <li className="beatenGames" key={game.id}>

@@ -1,37 +1,107 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "./navbar.css";
 import Logo from '../../assets/images/logo.png'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { useLocation } from "react-router-dom";
-const Navbar = () => {
+import {fetchUserData} from "../../api/authenticationService";
+
+
+
+const Navbar = (props) => {
 
     const {pathname} = useLocation();
+    const navigate = useNavigate();
+    const [data,setData]=useState({});
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
+
+
+    React.useEffect(()=>{
+        fetchUserData().then((response)=>{
+            setData(response.data);
+        }).catch(()=>{
+            localStorage.clear();
+            props.history.push('/');
+
+        })
+    },[])
+
+    useEffect(() => {
+        const token = localStorage.getItem('USER_KEY');
+        if (token) {
+            setIsLoggedIn(true);
+        }
+
+    }, [setIsLoggedIn]);
+
+
+    function refreshPage(){
+        window.location.reload();
+    }
+
+    const logout =() => {
+        localStorage.clear();
+        setIsLoggedIn(false);
+        navigate('/');
+    }
 
     if(pathname === "/login" || pathname === "/join") {
         return null;
     }
 
+
+
+
     return (
+        <div>
+
+            {isLoggedIn ? (
+
      <nav className="nav">
          <Link to="/" className="site-logo"> <img src={Logo} alt="Logo"/></Link>
-         {/*<Search/>*/}
+
          <ul>
              <li className="nav__el--join">
                  <Link  className="nav__el--join-top" to="/my-games"> My games</Link>
              </li >
 
-             <li className="nav__el--login">
-                 <Link className="nav__el--login-top" to="/login"> Login</Link>
-             </li>
-
              <li className="nav__el--join">
-                 <Link  className="nav__el--join-top" to="/join"> Join</Link>
+                 <Link  className="nav__el--join-top" to="/settings">   {data && `${data.firstname}`} </Link>
              </li >
 
-
-
+             <li className="nav__el--join">
+                 <Link  onClick={logout} to="/" className="nav__el--join-top"> Logout</Link>
+             </li>
          </ul>
-     </nav>
+
+     </nav> ) :
+                (
+
+                    <nav className="nav">
+                        <Link to="/" className="site-logo"> <img src={Logo} alt="Logo"/></Link>
+
+                        <ul>
+
+
+                        <li className="nav__el--login">
+                            <Link  className="nav__el--login-top" to="/login"> Login</Link>
+                        </li>
+
+                        <li className="nav__el--join">
+                            <Link  className="nav__el--join-top" to="/join"> Join</Link>
+                        </li>
+
+                        </ul>
+
+
+
+                    </nav>
+
+
+                )}
+
+        </div>
     );
 };
 

@@ -30,6 +30,7 @@ const Join = ({...props}) => {
                 if(res.status===200){
                     props.setUser(res.data);
                     navigate("/");
+                    window.location.reload();
                 }
 
 

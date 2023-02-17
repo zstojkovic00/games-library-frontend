@@ -28,6 +28,7 @@ const Login = ({loading,error,...props}) => {
             if(res.status===200){
                 props.setUser(res.data);
                 navigate("/");
+                window.location.reload();
             }
 
 
