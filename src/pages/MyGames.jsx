@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {fetchUserData} from "../api/authenticationService";
 import "./style/mygames.css"
+import GameItem from "../components/GameItem";
+
 
 
 
@@ -8,8 +10,6 @@ import "./style/mygames.css"
 const MyGames = ({...props}) => {
 
     const [data,setData]=useState({});
-
-
 
     React.useEffect(()=>{
         fetchUserData().then((response)=>{
@@ -26,18 +26,27 @@ const MyGames = ({...props}) => {
 
 
 
-
     return (
-        <>
+        <div className='games'>
+            <div className='gameList'>
 
-            <h1 className="myGameH1">Predjene igrice</h1>
-            {data.games?.map((game) => (
-             <li className="beatenGames" key={game.id}>
-                 {game.name}
-             </li>
-            ))}
-        </>
-    );
-};
+                {
+
+                    data.games?.map((game) =>{
+                        return(
+                            <GameItem key={game.id} game_id={game.id}  name={game.name} background_image={game.background_image}/>
+                        )}
+
+                    )
+                }
+
+            </div>
+        </div>
+    )
+}
+
+
+
+
 
 export default MyGames;

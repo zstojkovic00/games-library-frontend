@@ -24,12 +24,7 @@ const Home = (props) => {
         })
     },[])
 
-    const logOut=()=>{
 
-        localStorage.clear();
-        props.history.push('/');
-
-    }
 
     const getGames = async(searchKey) => {
         const type = searchKey ? `&page=1&page_size=40&search=${searchKey}` : "&page=1&page_size=40"

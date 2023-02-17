@@ -70,6 +70,7 @@ const GameDisplay = ({...props}) => {
         const {data: result} = await axios.get(`https://api.rawg.io/api/games/${id}?key=`+process.env.REACT_APP_API_KEY,{
         })
         setGame(result);
+        console.log(result);
     }
 
     useEffect(()=> {
