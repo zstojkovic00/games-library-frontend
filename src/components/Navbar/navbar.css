@@ -44,7 +44,7 @@ body {
 }
 
 
-.nav__el--login,.nav__el--join, .search__button {
+.nav__el--login,.nav__el--join, .search__button, .add_game__button {
     /* Variables */
     --button_radius: 0.75em;
     --button_color: #333;
@@ -56,7 +56,7 @@ body {
     background: var(--button_outline_color);
 }
 
-.nav__el--login-top, .nav__el--join-top, .search__button-top {
+.nav__el--login-top, .nav__el--join-top, .search__button-top, .add_game__button-top {
     display: block;
     box-sizing: border-box;
     border: 2px solid var(--button_outline_color);
@@ -68,12 +68,14 @@ body {
     transition: transform 0.1s ease;
 }
 
-.nav__el--login:hover .nav__el--login-top,.nav__el--join:hover .nav__el--join-top:hover, .search__button:hover,.search__button-top:hover {
+.nav__el--login:hover .nav__el--login-top,.nav__el--join:hover .nav__el--join-top:hover, .search__button:hover,.search__button-top:hover
+,.add_game__button:hover, .add_game__button-top:hover{
     /* Pull the button upwards when hovered */
     transform: translateY(-0.33em);
 }
 
-.nav__el--login:active .nav__el--login-top, .nav__el--join:active, .nav__el--join-top:active, .search__button:active,.search__button-top:active{
+.nav__el--login:active .nav__el--login-top, .nav__el--join:active, .nav__el--join-top:active, .search__button:active,.search__button-top:active
+,.add_game__button:active, .add_game__button-top:active{
     /* Push the button downwards when pressed */
     transform: translateY(0);
 }
