@@ -52,7 +52,7 @@ const MyGames = ({...props}) => {
 
                 {
 
-                    data.games?.sort((a, b) => a.name.localeCompare(b.name)).map((game) =>{
+                    data.games?.sort((a, b) => new Date(a.addedAt) - new Date(b.addedAt)).map((game) =>{
                         return(
                             <GameItem key={game.id} game_id={game.id}  name={game.name} background_image={game.background_image}/>
                         )}

@@ -18,14 +18,9 @@ const Home = (props) => {
     const [title, setTitle] = useState("Best Games of All Time");
 
 
-    React.useEffect(()=>{
-        fetchUserData().then((response)=>{
-            setData(response.data);
-        }).catch((e)=>{
-            localStorage.clear();
-            props.history.push('/');
-        })
-    },[])
+
+
+
 
 
 
@@ -33,6 +28,7 @@ const Home = (props) => {
         const type = searchKey ? `&page=1&page_size=40&search=${searchKey}` : "&page=1&page_size=40"
         const {data: {results}} = await axios.get("https://api.rawg.io/api/games?key="+process.env.REACT_APP_API_KEY+`${type}`,{
         })
+        console.log(results);
 
         setGames(results);
 }
@@ -67,7 +63,6 @@ const Home = (props) => {
             <div className='container-games'>
                 <br/>
                 <form onSubmit={searchGames} className="search__container">
-
                     <input  value={searchKey}  onChange={(e)=> setSearchKey(e.target.value)} className="search__input" type="text" placeholder="Search games" />
                     <div className="search__button">
                         <button className="search__button-top" > Search </button>

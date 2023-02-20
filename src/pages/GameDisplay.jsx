@@ -5,8 +5,7 @@ import starFull from '../assets/images/star-full.png';
 import starEmpty from '../assets/images/star-empty.png';
 import './style/gamedisplay.css'
 import {smallImage} from "../util/util";
-import {addGameToCurrentUser} from "../api/authenticationService";
-import Slider from "react-slick";
+import {addGameToCurrentUser,getCurrentUserGames} from "../api/authenticationService";
 
 const GameDisplay = ({...props}) => {
 
@@ -14,8 +13,7 @@ const GameDisplay = ({...props}) => {
     const [game, setGame] = useState([]);
     const [gamePhoto, setGamePhoto] = useState([]);
     const {id} = useParams();
-
-
+    const [currentGames, setCurrentGames] = useState([]);
 
     const getStars = () => {
         const stars = [];
@@ -32,17 +30,14 @@ const GameDisplay = ({...props}) => {
 
 
     useEffect(() => {
-
         const getGame = async () => {
             const {data: result} = await axios.get(`https://api.rawg.io/api/games/${id}?key=` + process.env.REACT_APP_API_KEY, {})
             setGame(result);
-            console.log(result);
         }
 
         const GetGameScreenshots = async () => {
             const {data: screenshots} = await axios.get(`https://rawg.io/api/games/${id}/screenshots?key=` + process.env.REACT_APP_API_KEY, {})
             setGamePhoto(screenshots);
-            console.log(screenshots);
 
         }
 
@@ -51,20 +46,32 @@ const GameDisplay = ({...props}) => {
 
     }, [id]);
 
+    useEffect(()=>{
+        getCurrentUserGames().then((response)=>{
+            setCurrentGames(response.data);
+        }).catch(()=>{
+        })
+    },[])
 
-    const handleSubmit = (e) => {
+
+
+    const handleSubmit =  (e) => {
         e.preventDefault();
 
-        addGameToCurrentUser(id).then((res) => {
 
-            console.log("response", res);
-            if (res.status === 200) {
-                navigate("/my-games");
+
+        addGameToCurrentUser(id).then( res => {
+
+            const gameExist = currentGames?.some((game) => game.id.toString() === id);
+
+            if(gameExist){
+                alert("You already added this game");
+            } else {
+                navigate("/my-games")
             }
 
-
         }).catch((err) => {
-
+            alert("You are not logged in!")
             console.log(err);
 
         });

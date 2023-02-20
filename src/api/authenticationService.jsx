@@ -47,3 +47,14 @@ export const addGameToCurrentUser=(id)=>{
         }
     })
 }
+
+export const getCurrentUserGames=()=>{
+    return axios({
+        method:'GET',
+        url:`http://localhost:8080/api/v1/auth/getCurrentUserGames`,
+        headers:{
+            'Authorization':'Bearer '+getToken()
+        }
+    })
+
+}
