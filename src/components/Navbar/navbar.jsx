@@ -51,8 +51,6 @@ const Navbar = (props) => {
     }
 
 
-
-
     return (
         <div>
 
@@ -83,7 +81,6 @@ const Navbar = (props) => {
 
                         <ul>
 
-
                         <li className="nav__el--login">
                             <Link  className="nav__el--login-top" to="/login"> Login</Link>
                         </li>
@@ -93,7 +90,6 @@ const Navbar = (props) => {
                         </li>
 
                         </ul>
-
 
 
                     </nav>

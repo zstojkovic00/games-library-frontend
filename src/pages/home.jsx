@@ -3,6 +3,7 @@ import GameList from "../components/GameList";
 import Pagination from '../components/Pagination'
 import './style/home_style.css'
 import axios from 'axios';
+import { motion } from 'framer-motion';
 import '../components/Navbar/navbar.css'
 import {fetchUserData} from '../api/authenticationService';
 
@@ -14,6 +15,8 @@ const Home = (props) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [gamesPerPage, setGamesPerPage] = useState(12);
     const [data,setData]=useState({});
+    const [title, setTitle] = useState("Best Games of All Time");
+
 
     React.useEffect(()=>{
         fetchUserData().then((response)=>{
@@ -40,16 +43,20 @@ const Home = (props) => {
 
     // Get current games
     const indexOfLastGame = currentPage * gamesPerPage;
-    const indexOfFirsgGame = indexOfLastGame - gamesPerPage;
-    const currentGames = games.slice(indexOfFirsgGame, indexOfLastGame);
+    const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+    const currentGames = games.slice(indexOfFirstGame, indexOfLastGame);
 
 
 
 
     const searchGames = (e) => {
         e.preventDefault();
+        setTitle(`${searchKey}`);
         getGames(searchKey);
+
     }
+
+
 
 
 
@@ -60,13 +67,15 @@ const Home = (props) => {
             <div className='container-games'>
                 <br/>
                 <form onSubmit={searchGames} className="search__container">
-                    <input  onChange={(e)=> setSearchKey(e.target.value)} className="search__input" type="text" placeholder="Search games" />
+
+                    <input  value={searchKey}  onChange={(e)=> setSearchKey(e.target.value)} className="search__input" type="text" placeholder="Search games" />
                     <div className="search__button">
-                        <button className="search__button-top" > Search</button>
+                        <button className="search__button-top" > Search </button>
                     </div>
                 </form>
+                <motion.h1 className="RowText">{title}</motion.h1>
+
             <div className='row'>
-                <h1 className='RowText'> Best games of all time</h1>
                 <GameList games={currentGames}/>
                 <Pagination gamesPerPage={gamesPerPage} totalGames={games.length}  setCurrentPage={setCurrentPage} currentPage={currentPage}/>
             </div>

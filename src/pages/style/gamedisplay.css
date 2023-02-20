@@ -1,25 +1,19 @@
 .left, .right {
     width: 55%;
-    height: 750px;
+    height: 1000px;
     padding: 30px;
 }
 
 .flex {
     display: flex;
-    justify-content: start;
 }
 
 .flex1 {
     display: flex;
 }
 
-.main_image {
-    width: auto;
-    height: auto;
-}
-
 .option img {
-    height: 181px;
+    height: 202px;
     padding: 10px;
 }
 
@@ -31,33 +25,34 @@
     color: #999;
     font-weight: 500;
     line-height: 1.3;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 
-.gameDescription{
+.gameDescription {
     color: #999;
-    font-size: 15px;
-    line-height: 1.65;
+    font-size: 19px;
+    line-height: 1.50;
     font-weight: 700;
 }
 
 
-.game_container{
+.game_container {
     display: flex;
     margin-top: 5%;
     margin-left: -3%;
 }
 
 
-.gameName{
+.gameName {
     color: #fff;
     font-size: 50px;
     line-height: 74px;
     font-weight: 700;
     margin: auto;
 }
-.gameRating{
+
+.gameRating {
     color: #fff;
     font-size: 25px;
 }
