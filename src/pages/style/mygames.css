@@ -1,12 +1,55 @@
-.beatenGames{
-    color:white;
+.beatenGames {
+    color: white;
     font-size: 30px;
     list-style-type: none;
 }
 
-.myGameH1{
+.myGameH1 {
     margin-left: 3%;
     color: #fff;
     font-size: 30px !important;
 
 }
+
+
+select {
+    font-weight: 700;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+}
+
+
+.sort-selection {
+    margin-left: 3%;
+    margin-bottom: 1%;
+    color: #fff;
+    font-size: 16px;
+    width: 250px;
+    height: 55px;
+    padding: 10px 16px;
+    background-color: hsla(0,0%,100%,.07);
+    border-radius: 8px;
+    border: none;
+    outline: none;
+
+}
+
+select option {
+    background-color: #333333;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+
+
+

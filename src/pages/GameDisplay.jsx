@@ -33,6 +33,7 @@ const GameDisplay = ({...props}) => {
         const getGame = async () => {
             const {data: result} = await axios.get(`https://api.rawg.io/api/games/${id}?key=` + process.env.REACT_APP_API_KEY, {})
             setGame(result);
+            console.log(result);
         }
 
         const GetGameScreenshots = async () => {
@@ -103,6 +104,7 @@ const GameDisplay = ({...props}) => {
             </div>
             <div className="right">
                 <h3 className="gameName">{game.name}</h3>
+                <h1 className="playTime">Average time to beat game : {game.playtime}h</h1>
                 <p className="gameReleased">Released: {new Date(game.released).toLocaleDateString()}</p>
                 <h4 className="gameRating"> Rating: {game.rating} {getStars()}  </h4>
                 <p className="gameDescription">

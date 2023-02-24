@@ -5,7 +5,6 @@ import './style/home_style.css'
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import '../components/Navbar/navbar.css'
-import {fetchUserData} from '../api/authenticationService';
 
 
 const Home = (props) => {
@@ -14,7 +13,6 @@ const Home = (props) => {
     const [searchKey, setSearchKey] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [gamesPerPage, setGamesPerPage] = useState(12);
-    const [data,setData]=useState({});
     const [title, setTitle] = useState("Best Games of All Time");
 
 
@@ -28,8 +26,6 @@ const Home = (props) => {
         const type = searchKey ? `&page=1&page_size=40&search=${searchKey}` : "&page=1&page_size=40"
         const {data: {results}} = await axios.get("https://api.rawg.io/api/games?key="+process.env.REACT_APP_API_KEY+`${type}`,{
         })
-        console.log(results);
-
         setGames(results);
 }
     useEffect(()=> {

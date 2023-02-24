@@ -6,6 +6,7 @@ import Join from "./pages/join"
 import { Route, Routes} from "react-router-dom";
 import GameDisplay from "./pages/GameDisplay";
 import MyGames from "./pages/MyGames"
+import Settings from "./pages/Settings";
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
            <Routes >
                <Route path="/" element={<Home/>} />
                <Route path="games/:id" element={<GameDisplay />} />
-
+                <Route path="/settings" element={<Settings />} />
                <Route path="/login" element={<Login/>} />
                <Route path="/join" element={<Join/>} />
                <Route path="/my-games" element={<MyGames/>} />

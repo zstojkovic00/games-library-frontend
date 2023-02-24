@@ -36,6 +36,14 @@
     font-weight: 700;
 }
 
+.playTime{
+    color: #999;
+    font-size: 30px;
+    line-height: 50px;
+    font-weight: 700;
+    margin: auto;
+}
+
 
 .game_container {
     display: flex;
