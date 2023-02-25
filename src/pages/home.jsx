@@ -5,6 +5,8 @@ import './style/home_style.css'
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import '../components/Navbar/navbar.css'
+import {Link} from "react-router-dom";
+import Logo from "../assets/images/logo.png";
 
 
 const Home = (props) => {
@@ -65,7 +67,7 @@ const Home = (props) => {
                     </div>
                 </form>
                 <motion.h1 className="RowText">{title}</motion.h1>
-
+                <Link  className="playTime" to="/publishers" > Publishers</Link>
             <div className='row'>
                 <GameList games={currentGames}/>
                 <Pagination gamesPerPage={gamesPerPage} totalGames={games.length}  setCurrentPage={setCurrentPage} currentPage={currentPage}/>
