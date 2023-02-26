@@ -79,3 +79,29 @@ body {
     /* Push the button downwards when pressed */
     transform: translateY(0);
 }
+
+
+.nav2{
+    margin-top: 30px;
+}
+
+.nav2 ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+
+}
+
+.navText{
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 700;
+    color: #fff;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+}
+
+.navText:hover{
+    color: hsla(0,0%,100%,.4);
+}
+

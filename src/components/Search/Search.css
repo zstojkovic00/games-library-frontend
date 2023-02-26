@@ -1,0 +1,77 @@
+.search__container{
+    display: flex;
+    width: 60%;
+
+}
+
+.search__button{
+    margin-left: 20px;
+}
+
+.search__button-top{
+    font-size: 17px;
+    font-weight: bold;
+    color: white;
+}
+
+
+.search__input{
+    --button_radius: 2em;
+    --button_color: hsla(0,0%,100%,.16);
+    --button_outline_color: #fff;
+    width: 1400px;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: var(--button_radius);
+    padding: 0.75em 1.5em;
+    color: hsla(0,0%,100%,.6);
+    border: none;
+    background: var(--button_color);
+    -webkit-transition: color .3s,background-color .3s,opacity .3s;
+    transition: color .3s,background-color .3s,opacity .3s;
+}
+.search__input:hover{
+    color: #000;
+    opacity: 1;
+    border: none;
+    background-color: #fff;
+}
+
+
+.search__input:focus{
+    outline:none;
+    border:none;
+}
+
+
+.queryNaslov{
+    display: flex;
+    justify-content: space-between;
+}
+
+.queryText{
+    margin-right: 100px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 72px;
+    line-height: 74px;
+    font-weight: 700;
+}
+
+
+.buttonBack{
+    margin-left: 3%;
+    height: 200px;
+    width: 70px;
+    line-height: 28px;
+    font-weight: 700;
+    color: #fff;
+    -webkit-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+
+}
+
+.buttonBack:hover{
+    color: hsla(0,0%,100%,.4);
+}

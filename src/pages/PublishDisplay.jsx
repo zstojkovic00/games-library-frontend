@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import {Link,useParams} from "react-router-dom";
 import {motion} from "framer-motion";
 
 const PublishDisplay = () => {
 
 
     const [gameOfPublisher, setGameOfPublisher] = useState([]);
-    const [publishers, setPublishers] = useState([]);
     const {id} = useParams();
 
 
@@ -33,7 +32,7 @@ const PublishDisplay = () => {
 
     return (
         <div>
-            <motion.h1 className="RowText">Games of {id.toLowerCase()
+            <motion.h1  className="RowText">Games of {id.toLowerCase()
                 .split('-')
                 .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                 .join(' ')}</motion.h1>

@@ -7,12 +7,31 @@ import {fetchUserData} from "../../api/authenticationService";
 
 
 
+
+
 const Navbar = (props) => {
 
     const {pathname} = useLocation();
     const navigate = useNavigate();
     const [data,setData]=useState({});
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+
+
+
+
+
+
+
+    const handleSearchSubmit = (event) => {
+        event.preventDefault();
+        navigate(`/search/${searchTerm}`);
+    };
+
+
+
+
+
 
 
 
@@ -59,6 +78,19 @@ const Navbar = (props) => {
      <nav className="nav">
          <Link to="/" className="site-logo"> <img src={Logo} alt="Logo"/></Link>
 
+         <form className="search__container" onSubmit={handleSearchSubmit}>
+             <input className="search__input"
+                    type="text"
+                    placeholder="Search games"
+                    value={searchTerm}
+                    onChange={(event) => setSearchTerm(event.target.value)}
+             />
+             <div className="search__button">
+                 <button className="search__button-top" > Search </button>
+             </div>
+         </form>
+
+
          <ul>
              <li className="nav__el--join">
                  <Link  className="nav__el--join-top" to="/my-games"> My games</Link>
@@ -76,10 +108,30 @@ const Navbar = (props) => {
      </nav> ) :
                 (
 
+
+
                     <nav className="nav">
+
                         <Link to="/" className="site-logo"> <img src={Logo} alt="Logo"/></Link>
 
+
+                        <form className="search__container" onSubmit={handleSearchSubmit}>
+                            <input className="search__input"
+                                type="text"
+                                placeholder="Search games"
+                                value={searchTerm}
+                                onChange={(event) => setSearchTerm(event.target.value)}
+                            />
+                            <div className="search__button">
+                                <button className="search__button-top" > Search </button>
+                            </div>
+                        </form>
+
+
                         <ul>
+
+
+
 
                         <li className="nav__el--login">
                             <Link  className="nav__el--login-top" to="/login"> Login</Link>
@@ -96,6 +148,32 @@ const Navbar = (props) => {
 
 
                 )}
+
+
+
+
+            <nav className="nav2">
+
+
+                <ul>
+
+                    <li >
+                        <Link  className="navText" to="/"> Home</Link>
+                    </li>
+
+                    <li >
+                        <Link  className="navText" to="/publishers"> Publishers</Link>
+                    </li>
+
+                </ul>
+
+
+            </nav>
+
+
+
+
+
 
         </div>
     );

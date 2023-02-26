@@ -5,28 +5,19 @@ import './style/home_style.css'
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import '../components/Navbar/navbar.css'
-import {Link} from "react-router-dom";
-import Logo from "../assets/images/logo.png";
+import '../components/Search/Search'
+
 
 
 const Home = (props) => {
 
     const [games, setGames] = useState([]);
-    const [searchKey, setSearchKey] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [gamesPerPage, setGamesPerPage] = useState(12);
-    const [title, setTitle] = useState("Best Games of All Time");
 
 
-
-
-
-
-
-
-    const getGames = async(searchKey) => {
-        const type = searchKey ? `&page=1&page_size=40&search=${searchKey}` : "&page=1&page_size=40"
-        const {data: {results}} = await axios.get("https://api.rawg.io/api/games?key="+process.env.REACT_APP_API_KEY+`${type}`,{
+    const getGames = async() => {
+        const {data: {results}} = await axios.get("https://api.rawg.io/api/games?key="+process.env.REACT_APP_API_KEY+"&page_size=40",{
         })
         setGames(results);
 }
@@ -43,31 +34,16 @@ const Home = (props) => {
 
 
 
-    const searchGames = (e) => {
-        e.preventDefault();
-        setTitle(`${searchKey}`);
-        getGames(searchKey);
-
-    }
-
-
-
-
-
 
     return (
 
 
             <div className='container-games'>
-                <br/>
-                <form onSubmit={searchGames} className="search__container">
-                    <input  value={searchKey}  onChange={(e)=> setSearchKey(e.target.value)} className="search__input" type="text" placeholder="Search games" />
-                    <div className="search__button">
-                        <button className="search__button-top" > Search </button>
-                    </div>
-                </form>
-                <motion.h1 className="RowText">{title}</motion.h1>
-                <Link  className="playTime" to="/publishers" > Publishers</Link>
+
+
+                <motion.h1 initial={{ x: "50%" }}
+                           animate={{ x: "calc(100vw - 102%)" }}  className="RowText">Best Games Of All Time</motion.h1>
+
             <div className='row'>
                 <GameList games={currentGames}/>
                 <Pagination gamesPerPage={gamesPerPage} totalGames={games.length}  setCurrentPage={setCurrentPage} currentPage={currentPage}/>
