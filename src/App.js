@@ -10,7 +10,7 @@ import Settings from "./pages/Settings";
 import Publishers from "./pages/Publishers";
 import PublishDisplay from "./pages/PublishDisplay";
 import {useState} from "react";
-import SearchResults from "./components/Search/Search";
+import SearchResults from "./pages/Search";
 
 function App() {
 
@@ -31,7 +31,7 @@ function App() {
                <Route path="/login" element={<Login/>} />
                <Route path="/join" element={<Join/>} />
                <Route path="/my-games" element={<MyGames/>} />
-               <Route path='*' element={<Home/>} />
+               {/*<Route path='*' element={<Home/>} />*/}
 
            </Routes>
         </div>

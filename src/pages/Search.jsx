@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import GameList from "../GameList";
+import GameList from "../components/GameList";
 import axios from "axios";
 import {motion} from "framer-motion";
-import './Search.css'
+import './style/Search.css'
 import {AiOutlineArrowLeft} from "react-icons/ai";
 
 
@@ -25,8 +25,7 @@ const SearchResults = () => {
         getGames();
     }, [query]);
 
-    const pomeritiLevo = query.length+ 'vh';
-    console.log(pomeritiLevo);
+
 
 
     return (

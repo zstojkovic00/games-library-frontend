@@ -152,23 +152,7 @@ const Navbar = (props) => {
 
 
 
-            <nav className="nav2">
 
-
-                <ul>
-
-                    <li >
-                        <Link  className="navText" to="/"> Home</Link>
-                    </li>
-
-                    <li >
-                        <Link  className="navText" to="/publishers"> Publishers</Link>
-                    </li>
-
-                </ul>
-
-
-            </nav>
 
 
 

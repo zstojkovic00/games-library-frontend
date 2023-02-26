@@ -6,14 +6,18 @@ import starEmpty from '../assets/images/star-empty.png';
 import './style/gamedisplay.css'
 import {smallImage} from "../util/util";
 import {addGameToCurrentUser,getCurrentUserGames} from "../api/authenticationService";
+import {AiOutlineArrowLeft} from "react-icons/ai";
 
-const GameDisplay = ({...props}) => {
+const GameDisplay = () => {
 
     const navigate = useNavigate();
     const [game, setGame] = useState([]);
     const [gamePhoto, setGamePhoto] = useState([]);
     const {id} = useParams();
     const [currentGames, setCurrentGames] = useState([]);
+    const goBack = () => {
+        navigate(-1);
+    }
 
     const getStars = () => {
         const stars = [];
@@ -36,14 +40,22 @@ const GameDisplay = ({...props}) => {
             console.log(result);
         }
 
-        const GetGameScreenshots = async () => {
+        const getGameScreenshots = async () => {
             const {data: screenshots} = await axios.get(`https://rawg.io/api/games/${id}/screenshots?key=` + process.env.REACT_APP_API_KEY, {})
             setGamePhoto(screenshots);
 
         }
 
+        // const getGameAchievements = async () => {
+        //     const {data: achievements} = await axios.get(`https://rawg.io/api/games/${id}/achievements?key=` + process.env.REACT_APP_API_KEY, {})
+        //     setAchievements(achievements);
+        //     console.log(achievements);
+        //
+        // }
+
         getGame();
-        GetGameScreenshots();
+        getGameScreenshots();
+        // getGameAchievements();
 
     }, [id]);
 
@@ -80,8 +92,10 @@ const GameDisplay = ({...props}) => {
     }
 
     return (
+        <div>
 
         <div className="container flex">
+            <AiOutlineArrowLeft className="buttonBack" onClick={goBack} />
             <div className="left">
                 <div className="main_image">
                     <img
@@ -123,7 +137,14 @@ const GameDisplay = ({...props}) => {
                 </form>
             </div>
 
+            
+
         </div>
+
+
+        </div>
+
+
 
 
     );
