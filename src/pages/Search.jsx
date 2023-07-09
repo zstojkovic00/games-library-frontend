@@ -17,8 +17,10 @@ const SearchResults = () => {
 
 
     const getGames = async () => {
-        const {data: {results}} = await axios.get(`https://api.rawg.io/api/games?search=${query}&key=` + process.env.REACT_APP_API_KEY, {})
-        setGames(results);
+        const {data: {results}} = await axios.get(`https://api.rawg.io/api/games?search=${query}&search_precise&key=` + process.env.REACT_APP_API_KEY,+"" ,{})
+        const filteredResults = results.filter(game => game.rating !== 0 && game.added > 100 && game.background_image);
+
+        setGames(filteredResults);
     }
 
     useEffect(() => {
