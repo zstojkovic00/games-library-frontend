@@ -1,11 +1,8 @@
 import axios from 'axios';
 
-
-
 const getToken=()=>{
     return localStorage.getItem('USER_KEY');
 }
-
 
 export const userJoin=(authRequest)=>{
     return axios({
@@ -23,20 +20,15 @@ export const userLogin=(authRequest)=>{
     })
 }
 
-
 export const fetchUserData=(authRequest)=>{
     return axios({
         method:'GET',
-        url:"http://localhost:8080/api/v1/auth/getCurrentUser",
+        url:"http://localhost:8080/api/v1/users/current",
         headers:{
             'Authorization':'Bearer '+getToken()
         }
     })
 }
-
-
-
-
 
 export const addGameToCurrentUser=(id)=>{
     return axios({
@@ -56,5 +48,4 @@ export const getCurrentUserGames=()=>{
             'Authorization':'Bearer '+getToken()
         }
     })
-
 }

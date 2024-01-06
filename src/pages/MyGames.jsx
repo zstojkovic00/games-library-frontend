@@ -3,28 +3,23 @@ import {fetchUserData} from "../api/authenticationService";
 import "./style/mygames.css"
 import GameItem from "../components/GameItem";
 
-
-
-
-
 const MyGames = ({...props}) => {
-
-    const [data,setData]=useState({});
+    const [data, setData] = useState({});
     const [games, setGames] = useState(data.games);
 
-    React.useEffect(()=>{
-        fetchUserData().then((response)=>{
+    React.useEffect(() => {
+        fetchUserData().then((response) => {
             setData(response.data);
             console.log(response.data);
-        }).catch(()=>{
+        }).catch(() => {
             localStorage.clear();
             props.history.push('/');
         })
-    },[props.history])
+    }, [props.history])
 
 
     function getTotalPlaytime(games) {
-        const totalSeconds = data.games?.reduce((total, game) => total + game.playtime* 3600, 0);
+        const totalSeconds = data.games?.reduce((total, game) => total + game.playtime * 3600, 0);
         const months = Math.floor(totalSeconds / 2592000);
         const days = Math.floor((totalSeconds % 2592000) / 86400);
         const hours = Math.floor((totalSeconds % 86400) / 3600);
@@ -34,7 +29,6 @@ const MyGames = ({...props}) => {
     }
 
     const totalPlaytime = getTotalPlaytime(data.games);
-
 
     const sorting = (e) => {
         e.preventDefault();
@@ -56,52 +50,31 @@ const MyGames = ({...props}) => {
         setGames(sortValue);
     };
 
-
-
-
-
-
-
-
-
-
-
-
     return (
         <div className='games'>
             <h1 className="myGameH1">Beaten games: {data.games?.length}</h1>
             <h1 className="myGameH1">Time spend: {totalPlaytime}</h1>
-                    <select className="sort-selection"  name="sort" id="sort" onChange={sorting}>
-                        <option value="addedAt">Time Added</option>
-                        <option value="released">Time Released</option>
-                        <option value="rating">Average Rating</option>
-                        <option value="playtime">Average Playtime</option>
+            <select className="sort-selection" name="sort" id="sort" onChange={sorting}>
+                <option value="addedAt">Time Added</option>
+                <option value="released">Time Released</option>
+                <option value="rating">Average Rating</option>
+                <option value="playtime">Average Playtime</option>
 
-
-                    </select>
+            </select>
             <div className='gameList'>
 
                 {
-
-                    data.games?.map((game) =>{
-                        return(
-                            <GameItem key={game.id} game_id={game.id}  name={game.name} background_image={game.background_image}/>
-                        )}
-
+                    data.games?.map((game) => {
+                            return (
+                                <GameItem key={game.id} game_id={game.id} name={game.name}
+                                          background_image={game.background_image}/>
+                            )
+                        }
                     )
                 }
-
-
-
-
-
             </div>
         </div>
     )
 }
-
-
-
-
 
 export default MyGames;

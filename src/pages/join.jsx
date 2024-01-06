@@ -16,31 +16,23 @@ const Join = ({...props}) => {
         password: ''
     });
 
-
-
-
     const handleSubmit = (e) => {
-            e.preventDefault();
-            console.log(values);
-            props.authenticate();
+        e.preventDefault();
+        console.log(values);
+        props.authenticate();
 
-            userJoin(values).then((res)=>{
+        userJoin(values).then((res) => {
 
-                console.log("response",res);
-                if(res.status===200){
-                    props.setUser(res.data);
-                    navigate("/");
-                    window.location.reload();
-                }
-
-
-            }).catch((err)=>{
-
-                console.log(err);
-
-            });
-
-        }
+            console.log("response", res);
+            if (res.status === 200) {
+                props.setUser(res.data);
+                navigate("/");
+                window.location.reload();
+            }
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
 
     const handleChange = (e) => {
         e.persist();
@@ -50,44 +42,45 @@ const Join = ({...props}) => {
         }));
     };
 
-        return (
-            <div className="auth_wrapper" >
+    return (
+        <div className="auth_wrapper">
             <div className="auth-form">
                 <h2>Join</h2>
 
                 <form className="join-form" onSubmit={handleSubmit}>
                     <label htmlFor="firstname">First name</label>
-                    <input className="input_form" value={values.firstname}  onChange={handleChange} type="text"  id="firstname" name="firstname" required/>
+                    <input className="input_form" value={values.firstname} onChange={handleChange} type="text"
+                           id="firstname" name="firstname" required/>
                     <label htmlFor="lastname">Last name</label>
-                    <input className="input_form" value={values.lastname} onChange={handleChange} type="text"  id="lastname" name="lastname" required/>
+                    <input className="input_form" value={values.lastname} onChange={handleChange} type="text"
+                           id="lastname" name="lastname" required/>
                     <label htmlFor="email">email</label>
-                    <input className="input_form" value={values.email} onChange={handleChange} type="email"  id="email" name="email" required/>
+                    <input className="input_form" value={values.email} onChange={handleChange} type="email" id="email"
+                           name="email" required/>
                     <label htmlFor="password">password</label>
-                    <input className="input_form" value={values.password} onChange={handleChange} type="password"  id="password" name="password" required/>
+                    <input className="input_form" value={values.password} onChange={handleChange} type="password"
+                           id="password" name="password" required/>
                     <button className="joinButton" type="submit">Join</button>
                 </form>
                 <Link className="linkButton" to="/login">Already have an account? Login here!</Link>
             </div>
-            </div>
+        </div>
 
-        );
+    );
 };
 
-const mapStateToProps=({auth})=>{
-    console.log("state ",auth)
+const mapStateToProps = ({auth}) => {
+    console.log("state ", auth)
     return {
-        loading:auth.loading,
-        error:auth.error
-    }}
-
-
-const mapDispatchToProps=(dispatch)=>{
-
+        loading: auth.loading,
+        error: auth.error
+    }
+}
+const mapDispatchToProps = (dispatch) => {
     return {
-        authenticate :()=> dispatch(authenticate()),
-        setUser:(data)=> dispatch(authSuccess(data)),
+        authenticate: () => dispatch(authenticate()),
+        setUser: (data) => dispatch(authSuccess(data)),
     }
 }
 
-
-export default connect(mapStateToProps,mapDispatchToProps)(Join);
+export default connect(mapStateToProps, mapDispatchToProps)(Join);

@@ -35,7 +35,7 @@ select {
     width: 250px;
     height: 55px;
     padding: 10px 16px;
-    background-color: hsla(0,0%,100%,.07);
+    background-color: hsla(0, 0%, 100%, .07);
     border-radius: 8px;
     border: none;
     outline: none;

@@ -1,4 +1,4 @@
-.auth_wrapper{
+.auth_wrapper {
     text-align: center;
     display: flex;
     min-height: 100vh;
@@ -9,14 +9,13 @@
 }
 
 
-
 .auth-form, .login-form, .join-form {
     display: flex;
     flex-direction: column;
 }
 
 .auth-form {
-   padding: 5rem;
+    padding: 5rem;
     border: 1px solid white;
     border-radius: 10px;
 }

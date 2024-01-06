@@ -1,15 +1,13 @@
-*{
-box-sizing: border-box;
+* {
+    box-sizing: border-box;
 }
-
-
 
 body {
     margin: 0;
 }
 
 .nav {
-    background-color: rgb(21,21,21);
+    background-color: rgb(21, 21, 21);
     color: white;
     display: flex;
     justify-content: space-between;
@@ -21,6 +19,7 @@ body {
 .nav a {
     color: inherit;
 }
+
 .nav img {
     width: 80px;
     height: 80px;
@@ -44,7 +43,7 @@ body {
 }
 
 
-.nav__el--login,.nav__el--join, .search__button, .add_game__button {
+.nav__el--login, .nav__el--join, .search__button, .add_game__button {
     /* Variables */
     --button_radius: 0.75em;
     --button_color: #333;
@@ -68,20 +67,17 @@ body {
     transition: transform 0.1s ease;
 }
 
-.nav__el--login:hover .nav__el--login-top,.nav__el--join:hover .nav__el--join-top:hover, .search__button:hover,.search__button-top:hover
-,.add_game__button:hover, .add_game__button-top:hover{
+.nav__el--login:hover .nav__el--login-top, .nav__el--join:hover .nav__el--join-top:hover, .search__button:hover, .search__button-top:hover, .add_game__button:hover, .add_game__button-top:hover {
     /* Pull the button upwards when hovered */
     transform: translateY(-0.33em);
 }
 
-.nav__el--login:active .nav__el--login-top, .nav__el--join:active, .nav__el--join-top:active, .search__button:active,.search__button-top:active
-,.add_game__button:active, .add_game__button-top:active{
+.nav__el--login:active .nav__el--login-top, .nav__el--join:active, .nav__el--join-top:active, .search__button:active, .search__button-top:active, .add_game__button:active, .add_game__button-top:active {
     /* Push the button downwards when pressed */
     transform: translateY(0);
 }
 
-
-.nav2{
+.nav2 {
     margin-top: 10px;
 }
 
@@ -92,7 +88,7 @@ body {
 
 }
 
-.navText{
+.navText {
     font-size: 24px;
     line-height: 28px;
     font-weight: 700;
@@ -101,7 +97,7 @@ body {
     transition: all .2s ease-out;
 }
 
-.navText:hover{
-    color: hsla(0,0%,100%,.4);
+.navText:hover {
+    color: hsla(0, 0%, 100%, .4);
 }
 

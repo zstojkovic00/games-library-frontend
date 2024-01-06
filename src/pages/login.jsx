@@ -1,18 +1,14 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
-import { authenticate, authFailure, authSuccess } from '../redux/authActions';
-import { connect } from 'react-redux';
+import {authenticate, authFailure, authSuccess} from '../redux/authActions';
+import {connect} from 'react-redux';
 import './style/auth.css'
 import {userLogin} from "../api/authenticationService";
 
 
-
-
-const Login = ({loading,error,...props}) => {
+const Login = ({loading, error, ...props}) => {
 
     const navigate = useNavigate();
-
-
     const [values, setValues] = useState({
         email: '',
         password: ''
@@ -22,25 +18,18 @@ const Login = ({loading,error,...props}) => {
         e.preventDefault();
         props.authenticate();
 
-        userLogin(values).then((res)=>{
+        userLogin(values).then((res) => {
 
-            console.log("response",res);
-            if(res.status===200){
+            console.log("response", res);
+            if (res.status === 200) {
                 props.setUser(res.data);
                 navigate("/");
                 window.location.reload();
             }
-
-
-        }).catch((err)=>{
-
+        }).catch((err) => {
             console.log(err);
-
         });
-
     }
-
-
     const handleChange = (e) => {
         e.persist();
         setValues(values => ({
@@ -50,39 +39,38 @@ const Login = ({loading,error,...props}) => {
     };
 
     return (
-        <div className="auth_wrapper" >
-        <div className="auth-form">
-            <h2> Login</h2>
-        <form className="login-form" onSubmit={handleSubmit}>
-            <label htmlFor="email">email</label>
-            <input className="input_form" value={values.email} onChange={handleChange} type="email"  id="email" name="email" />
-            <label htmlFor="password">password</label>
-            <input className="input_form" value={values.password} onChange={handleChange} type="password"  id="password" name="password"/>
-            <button className="loginButton" type="submit">Log in</button>
-        </form>
-            <Link className="linkButton" to="/join">Don't have an account?  Join here!</Link>
-        </div>
+        <div className="auth_wrapper">
+            <div className="auth-form">
+                <h2> Login</h2>
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <label htmlFor="email">email</label>
+                    <input className="input_form" value={values.email} onChange={handleChange} type="email" id="email"
+                           name="email"/>
+                    <label htmlFor="password">password</label>
+                    <input className="input_form" value={values.password} onChange={handleChange} type="password"
+                           id="password" name="password"/>
+                    <button className="loginButton" type="submit">Log in</button>
+                </form>
+                <Link className="linkButton" to="/join">Don't have an account? Join here!</Link>
+            </div>
         </div>
 
     );
 };
 
 
-const mapStateToProps=({auth})=>{
-    console.log("state ",auth)
+const mapStateToProps = ({auth}) => {
+    console.log("state ", auth)
     return {
-        loading:auth.loading,
-        error:auth.error
-    }}
-
-
-const mapDispatchToProps=(dispatch)=>{
-
+        loading: auth.loading,
+        error: auth.error
+    }
+}
+const mapDispatchToProps = (dispatch) => {
     return {
-        authenticate :()=> dispatch(authenticate()),
-        setUser:(data)=> dispatch(authSuccess(data)),
+        authenticate: () => dispatch(authenticate()),
+        setUser: (data) => dispatch(authSuccess(data)),
     }
 }
 
-
-export default connect(mapStateToProps,mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
