@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
-import {authenticate, authFailure, authSuccess} from '../redux/authActions';
+import {authenticate, authSuccess} from '../redux/authActions';
 import {connect} from 'react-redux';
 import './style/auth.css'
 import {userLogin} from "../api/authenticationService";
@@ -23,6 +23,7 @@ const Login = ({loading, error, ...props}) => {
             console.log("response", res);
             if (res.status === 200) {
                 props.setUser(res.data);
+                console.log(res.data)
                 navigate("/");
                 window.location.reload();
             }
@@ -69,7 +70,10 @@ const mapStateToProps = ({auth}) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         authenticate: () => dispatch(authenticate()),
-        setUser: (data) => dispatch(authSuccess(data)),
+        setUser: (content) => {
+            console.log("Content:", content);
+            dispatch(authSuccess(content))
+        },
     }
 }
 

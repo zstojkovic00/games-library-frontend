@@ -30,16 +30,12 @@ const Navbar = (props) => {
     }, [])
 
     useEffect(() => {
-        const token = localStorage.getItem('USER_KEY');
+        const token = localStorage.getItem('ACCESS_TOKEN');
         if (token) {
             setIsLoggedIn(true);
         }
 
     }, [setIsLoggedIn]);
-
-    function refreshPage() {
-        window.location.reload();
-    }
 
     const logout = () => {
         localStorage.clear();

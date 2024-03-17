@@ -70,7 +70,6 @@ const GameDisplay = () => {
         e.preventDefault();
         addGameToCurrentUser(id).then(res => {
             const gameExist = currentGames?.some((game) => game.id.toString() === id);
-
             if (gameExist) {
                 alert("You already added this game");
             } else {
