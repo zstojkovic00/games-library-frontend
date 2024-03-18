@@ -2,12 +2,11 @@ import React, {useState, useEffect} from 'react';
 import GameList from "../components/GameList";
 import Pagination from '../components/Pagination'
 import './style/home_style.css'
-import axios from 'axios';
 import {motion} from 'framer-motion';
 import '../components/Navbar/navbar.css'
 import './Search'
 import {Link} from "react-router-dom";
-import {popularGamesUrl, newGamesUrl, upcomingGamesUrl, bestGamesUrl} from "../api/helper";
+import {getGamesByCriteria} from "../api/gamesService";
 
 const Home = () => {
     const [games, setGames] = useState([]);
@@ -18,22 +17,27 @@ const Home = () => {
 
     useEffect(() => {
         const getGames = async () => {
-            let url;
+            let url = "best-games";
             if (activeLink === "popular-games") {
                 setTitle("Popular Games")
-                url = popularGamesUrl();
+                url = "popular-games"
             } else if (activeLink === "new-games") {
                 setTitle("New Games")
-                url = newGamesUrl();
+                url = "new-games"
             } else if (activeLink === "upcoming-games") {
                 setTitle("Upcoming Games")
-                url = upcomingGamesUrl();
+                url = "upcoming-games"
             } else if (activeLink === "best-games") {
-                url = bestGamesUrl();
+                url="best-games"
                 setTitle("Best Games Of All Time")
             }
-            const {data: {results}} = await axios.get("https://api.rawg.io/api/games?key=" + process.env.REACT_APP_API_KEY + `&page_size=40&${url}`, {});
-            setGames(results);
+            try {
+                console.log(url)
+                const response = await getGamesByCriteria(url);
+                setGames(response.data.results);
+            } catch (error) {
+                console.error('Error fetching games:', error);
+            }
         };
         getGames();
     }, [activeLink]);

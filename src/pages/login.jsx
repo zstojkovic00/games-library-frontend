@@ -7,7 +7,6 @@ import {userLogin} from "../api/authenticationService";
 
 
 const Login = ({loading, error, ...props}) => {
-
     const navigate = useNavigate();
     const [values, setValues] = useState({
         email: '',
@@ -28,7 +27,8 @@ const Login = ({loading, error, ...props}) => {
                 window.location.reload();
             }
         }).catch((err) => {
-            console.log(err);
+            alert(err.response.data.message)
+            console.log(err.response.data);
         });
     }
     const handleChange = (e) => {

@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar/navbar";
 import Home from "./pages/home"
 import Login from "./pages/login"
 import Join from "./pages/join"
-import { Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import GameDisplay from "./pages/GameDisplay";
 import MyGames from "./pages/MyGames"
 import Settings from "./pages/Settings";
@@ -13,11 +13,9 @@ import {useState} from "react";
 import SearchResults from "./pages/Search";
 
 function App() {
-
     const [games, setGames] = useState([]);
 
   return (
-
     <div className="App">
       <Navbar setGames={setGames}/>
         <div className="container">
@@ -32,7 +30,6 @@ function App() {
                <Route path="/join" element={<Join/>} />
                <Route path="/my-games" element={<MyGames/>} />
                {/*<Route path='*' element={<Home/>} />*/}
-
            </Routes>
         </div>
     </div>

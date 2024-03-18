@@ -5,7 +5,7 @@ import starFull from '../assets/images/star-full.png';
 import starEmpty from '../assets/images/star-empty.png';
 import './style/gamedisplay.css'
 import {smallImage} from "../util/util";
-import {addGameToCurrentUser, getCurrentUserGames} from "../api/authenticationService";
+import {addGameToCurrentUser, getCurrentUserGames} from "../api/gamesService";
 import {AiOutlineArrowLeft} from "react-icons/ai";
 
 const GameDisplay = () => {
@@ -32,7 +32,6 @@ const GameDisplay = () => {
         return stars;
     };
 
-
     useEffect(() => {
         const getGame = async () => {
             const {data: result} = await axios.get(`https://api.rawg.io/api/games/${id}?key=` + process.env.REACT_APP_API_KEY, {})
@@ -43,20 +42,16 @@ const GameDisplay = () => {
         const getGameScreenshots = async () => {
             const {data: screenshots} = await axios.get(`https://rawg.io/api/games/${id}/screenshots?key=` + process.env.REACT_APP_API_KEY, {})
             setGamePhoto(screenshots);
-
         }
-
         // const getGameAchievements = async () => {
         //     const {data: achievements} = await axios.get(`https://rawg.io/api/games/${id}/achievements?key=` + process.env.REACT_APP_API_KEY, {})
         //     setAchievements(achievements);
         //     console.log(achievements);
         //
         // }
-
         getGame();
         getGameScreenshots();
         // getGameAchievements();
-
     }, [id]);
 
     useEffect(() => {
